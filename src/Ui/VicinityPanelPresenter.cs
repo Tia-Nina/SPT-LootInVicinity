@@ -90,7 +90,7 @@ internal static class VicinityPanelPresenter{
     /// <returns>Yields while scan, stash populate, and panel show run.</returns>
     public static IEnumerator AttachNearbyPanelRoutine(
         ItemsPanel               itemsPanel, SimpleStashPanel simpleStashPanel, InventoryController inventoryController,
-        ItemContextAbstractClass sourceContext, ItemsPanel.EItemsTab currentTab, AddViewListClass uiDisposableList
+        ItemContext sourceContext, ItemsPanel.EItemsTab currentTab, UIParent uiDisposableList
     ){
         if(IsAttachInProgress) yield break;
 
