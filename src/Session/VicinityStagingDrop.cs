@@ -19,9 +19,9 @@ internal static class VicinityStagingDrop{
 
         if(!player || grid == null || trader == null) return;
 
-        if(!Singleton<GInterface169>.Instantiated) return;
+        if(!Singleton<EFT.IGameLevel>.Instantiated) return;
 
-        var world = Singleton<GInterface169>.Instance;
+        var world = Singleton<EFT.IGameLevel>.Instance;
 
         foreach(var item in grid.Items.ToList()){
             if(!VicinityStagingRegistry.IsStaged(item)) continue;
@@ -34,11 +34,11 @@ internal static class VicinityStagingDrop{
     }
 
     private static void TryDropAtFeet(
-        Item item, object player, TraderControllerClass trader, GInterface169 world, VicinityStashGrid grid
+        Item item, object player, ItemController trader, EFT.IGameLevel world, VicinityStashGrid grid
     ){
         try{
             if(grid.Contains(item)){
-                var remove = InteractionsHandlerClass.Remove(item, trader);
+                var remove = ItemManipulator.Remove(item, trader);
 
                 if(remove.Failed){
                     LootInVicinityPlugin.Log?.LogWarning(
@@ -53,7 +53,7 @@ internal static class VicinityStagingDrop{
             var throwMethod = ResolveThrowItemMethod(player);
 
             if(throwMethod == null){
-                LootInVicinityPlugin.Log?.LogWarning(PluginInfo.Format("ThrowItem not found on GInterface169."));
+                LootInVicinityPlugin.Log?.LogWarning(PluginInfo.Format("ThrowItem not found on EFT.IGameLevel."));
 
                 return;
             }
@@ -78,7 +78,7 @@ internal static class VicinityStagingDrop{
 
         if(iPlayerType == null) return null;
 
-        _throwItemMethod = typeof(GInterface169).GetMethod("ThrowItem", [typeof(Item), iPlayerType, typeof(Vector3?)]);
+        _throwItemMethod = typeof(EFT.IGameLevel).GetMethod("ThrowItem", [typeof(Item), iPlayerType, typeof(Vector3?)]);
 
         return _throwItemMethod;
     }

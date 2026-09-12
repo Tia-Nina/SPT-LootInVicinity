@@ -47,8 +47,8 @@ Which items appear is set under **3. Scanning** in the config (see below).
 
 ## Settings
 
-Open **Configuration Manager** in-game, or edit `BepInEx\config\com.softwyx.lootinvicinity.cfg` while the game is *
-*closed**.
+Open **Configuration Manager** in-game, or edit `BepInEx\config\com.softwyx.lootinvicinity.cfg` while the game is \*
+\*closed\*\*.
 
 **1. General**
 
@@ -98,7 +98,7 @@ You get faster help if you include detail. **Copy/paste this checklist** and fil
 
 1. **Mod version** -- From BepInEx `LogOutput.log`: the line where **Loot In Vicinity** loads (it shows **v...**).
 
-2. **Game / SPT** -- Roughly what you use (example: "SPT 4.0.13, EFT client build ..."). Exact numbers help.
+2. **Game / SPT** -- Roughly what you use (example: "SPT 4.1.x, EFT client build ..."). Exact numbers help.
 
 3. **What happened** -- One short sentence (e.g. "Tab in raid, panel empty" / "the game froze after I ...").
 
@@ -147,6 +147,6 @@ SPDX: `MPL-2.0`
 
 ## Disclaimer
 
-*Escape from Tarkov* is a trademark of Battlestate Games. This mod is an independent, community-made add-on. Use at your
+_Escape from Tarkov_ is a trademark of Battlestate Games. This mod is an independent, community-made add-on. Use at your
 own risk. The author is not responsible for lost progress, banned accounts on other services, or damage from third-party
 tools.

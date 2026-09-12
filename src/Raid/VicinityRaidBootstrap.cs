@@ -1,5 +1,6 @@
 using Comfort.Common;
 using EFT;
+using EFT.InventoryLogic;
 
 namespace Softwyx.LootInVicinity.Raid;
 
@@ -18,13 +19,13 @@ internal static class VicinityRaidBootstrap{
 
         if(!Singleton<GameWorld>.Instantiated || !VicinityLocalPlayer.TryBind()) return false;
 
-        var stash = Singleton<ItemFactoryClass>.Instance.CreateFakeStash();
+        var stash = Singleton<ItemFactory>.Instance.CreateFakeStash();
         var grid  = new VicinityStashGrid("vicinityGrid", stash);
 
         stash.Grids = [grid];
 
         VicinityRaidServices.RadiusStash = stash;
-        VicinityRaidServices.VicinityTrader = new TraderControllerClass(
+        VicinityRaidServices.VicinityTrader = new ItemController(
                                                                         stash,
                                                                         VicinityLootSession.OwnerId,
                                                                         Settings.FormatPanelTitle(0),

@@ -5,7 +5,7 @@ using EFT.UI.DragAndDrop;
 namespace Softwyx.LootInVicinity.Grid;
 
 internal class VicinityStashGrid(string id, CompoundItem parentItem)
-    : StashGridClass(id, 10, 12, true, false, [], parentItem){
+    : EFT.InventoryLogic.Grid(id, 10, 12, true, false, [], parentItem){
     public GridView[] GridViews{
         get;
         set;
@@ -145,8 +145,8 @@ internal class VicinityStashGrid(string id, CompoundItem parentItem)
         foreach(var gridView in GridViews){
             if(!gridView) continue;
 
-            gridView.OnItemRemoved(new RemoveItemEventArgs(item, fromAddress, CommandStatus.Begin,   owner));
-            gridView.OnItemRemoved(new RemoveItemEventArgs(item, fromAddress, CommandStatus.Succeed, owner));
+            ((EFT.IRemoveHandler)gridView).OnItemRemoved(new RemoveItemEventArgs(item, fromAddress, CommandStatus.Begin,   owner));
+            ((EFT.IRemoveHandler)gridView).OnItemRemoved(new RemoveItemEventArgs(item, fromAddress, CommandStatus.Succeed, owner));
         }
     }
 
@@ -177,19 +177,19 @@ internal class VicinityStashGrid(string id, CompoundItem parentItem)
     }
 
     private void PlaceItemInGrid(Item item, LocationInGrid location){
-        method_9(item, location);
+        PlaceItem(item, location);
     }
 
     private void RemoveItemFromGrid(Item item, LocationInGrid location, bool updateSpaceBuffer){
-        method_10(item, location, updateSpaceBuffer);
+        RemoveItem(item, location, updateSpaceBuffer);
     }
 
     private sealed class VicinityStashGridCollection : StashGridCollectionClass{
-        private Dictionary<Item, LocationInGrid> ItemLocations => Dictionary_0;
+        private Dictionary<Item, LocationInGrid> ItemLocations => Items;
 
-        private List<Item> ItemList => List_0;
+        private List<Item> ItemList => ItemsList;
 
-        public override void Add(Item item, StashGridClass grid, LocationInGrid location){
+        public override void Add(Item item, EFT.InventoryLogic.Grid grid, LocationInGrid location){
             if(item == null) return;
 
             if(UsesRealInventoryMove(item, false)){
@@ -202,7 +202,7 @@ internal class VicinityStashGrid(string id, CompoundItem parentItem)
             ItemList.Add(item);
         }
 
-        public override void Remove(Item item, StashGridClass grid){
+        public override void Remove(Item item, EFT.InventoryLogic.Grid grid){
             if(item == null) return;
 
             if(UsesRealInventoryRemove(item)){

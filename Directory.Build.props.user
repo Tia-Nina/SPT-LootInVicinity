@@ -1,0 +1,16 @@
+<Project>
+  <PropertyGroup>
+    <TarkovDir>E:\EscapeFromTarkov\Client.0.16.9.5.40743</TarkovDir>
+    <!-- Derived paths are evaluated in Directory.Build.props BEFORE this file is imported,
+         so they must be restated here when TarkovDir differs from the default. -->
+    <TarkovManagedDir>$(TarkovDir)\EscapeFromTarkov_Data\Managed</TarkovManagedDir>
+    <TarkovBepInExDir>$(TarkovDir)\BepInEx</TarkovBepInExDir>
+    <TarkovPluginsDir>$(TarkovBepInExDir)\plugins</TarkovPluginsDir>
+    <DeployToPlugins>false</DeployToPlugins>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+    <IncrementVersionOnBuild>false</IncrementVersionOnBuild>
+  </PropertyGroup>
+</Project>

@@ -8,7 +8,7 @@ using SPT.Reflection.Patching;
 namespace Softwyx.LootInVicinity;
 
 [BepInPlugin(PluginInfo.PLUGIN_GUID, PluginInfo.PLUGIN_NAME, PluginInfo.PLUGIN_VERSION)]
-[BepInDependency("com.SPT.core", "4.0.0")]
+[BepInDependency("com.SPT.core", "4.1.0")]
 public class LootInVicinityPlugin : BaseUnityPlugin{
     internal static ManualLogSource      Log;
     internal static LootInVicinityPlugin Instance;

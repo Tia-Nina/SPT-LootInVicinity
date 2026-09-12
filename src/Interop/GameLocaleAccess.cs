@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using HarmonyLib;
+using EFT;
 
 namespace Softwyx.LootInVicinity.Interop;
 
@@ -9,19 +9,15 @@ internal static class GameLocaleAccess{
         if(string.IsNullOrEmpty(key)) return null;
 
         try{
-            var manager = LocaleManagerClass.LocaleManagerClass;
+            var manager = LocalizationManager.Instance;
 
             if(manager == null) return null;
 
-            var localeId = Traverse.Create(manager).
-                                    Property(GameAssemblyNames.LocaleManagerProperties.SelectedLanguage).
-                                    GetValue<string>();
+            var localeId = manager.Culture;
 
             if(string.IsNullOrEmpty(localeId)) localeId = LocaleFileStore.DefaultLocaleId;
 
-            var tables = Traverse.Create(manager).
-                                  Field(GameAssemblyNames.LocaleManagerFields.LocaleTables).
-                                  GetValue<Dictionary<string, Dictionary<string, string>>>();
+            var tables = manager._locales;
 
             if(tables == null || !tables.TryGetValue(localeId, out var table) || table == null) return null;
 
